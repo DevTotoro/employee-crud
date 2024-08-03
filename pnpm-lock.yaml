@@ -88,6 +88,15 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(eslint@9.8.0)(typescript@5.5.4)
 
+  packages/tailwind-config:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
+      tailwindcss:
+        specifier: ^3.4.7
+        version: 3.4.7
+
   packages/typescript-config: {}
 
 packages:
