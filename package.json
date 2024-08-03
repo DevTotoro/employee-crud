@@ -2,6 +2,8 @@
   "name": "employee-crud",
   "private": true,
   "scripts": {
+    "dev": "turbo dev",
+    "lint": "turbo lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,html}\""
   },
   "devDependencies": {
