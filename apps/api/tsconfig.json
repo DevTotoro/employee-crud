@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/nest.json",
+
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+
+  "include": ["**/*.ts"]
+}
