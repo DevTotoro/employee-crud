@@ -69,9 +69,6 @@ importers:
 
   apps/employee-management:
     dependencies:
-      '@repo/ui':
-        specifier: workspace:^
-        version: link:../../packages/ui
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -85,9 +82,6 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:^
         version: link:../../packages/eslint-config
-      '@repo/tailwind-config':
-        specifier: workspace:^
-        version: link:../../packages/tailwind-config
       '@repo/typescript-config':
         specifier: workspace:^
         version: link:../../packages/typescript-config
@@ -174,59 +168,7 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(eslint@9.8.0)(typescript@5.5.4)
 
-  packages/tailwind-config:
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:^
-        version: link:../typescript-config
-      '@types/node':
-        specifier: ^22.0.2
-        version: 22.1.0
-      tailwindcss:
-        specifier: ^3.4.7
-        version: 3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
-      typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
-
   packages/typescript-config: {}
-
-  packages/ui:
-    dependencies:
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:^
-        version: link:../eslint-config
-      '@repo/tailwind-config':
-        specifier: workspace:^
-        version: link:../tailwind-config
-      '@repo/typescript-config':
-        specifier: workspace:^
-        version: link:../typescript-config
-      '@types/node':
-        specifier: ^22.0.2
-        version: 22.1.0
-      '@types/react':
-        specifier: ^18.3.3
-        version: 18.3.3
-      autoprefixer:
-        specifier: ^10.4.19
-        version: 10.4.20(postcss@8.4.40)
-      eslint:
-        specifier: ^9.8.0
-        version: 9.8.0
-      postcss:
-        specifier: ^8.4.40
-        version: 8.4.40
-      tailwindcss:
-        specifier: ^3.4.7
-        version: 3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
-      typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
 
 packages:
 

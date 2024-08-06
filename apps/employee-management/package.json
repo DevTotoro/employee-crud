@@ -10,14 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@repo/ui": "workspace:^",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:^",
-    "@repo/tailwind-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
