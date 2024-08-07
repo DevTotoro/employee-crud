@@ -1,2 +1,4 @@
+source ~/.nvm/nvm.sh
+
 pnpm lint
 pnpm format
