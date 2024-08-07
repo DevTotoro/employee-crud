@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { routes } from '~/lib/routes';
+import { Toaster } from '~/components/ui/sonner';
 
 const router = createBrowserRouter(routes);
 
@@ -12,5 +13,6 @@ const router = createBrowserRouter(routes);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Toaster />
   </React.StrictMode>
 );
