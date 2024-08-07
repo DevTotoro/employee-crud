@@ -1,7 +1,5 @@
+import { EmployeeTable } from '~/components/employee-table';
+
 export const EmployeesPage = () => {
-  return (
-    <div>
-      <h1>Employees</h1>
-    </div>
-  );
+  return <EmployeeTable />;
 };
