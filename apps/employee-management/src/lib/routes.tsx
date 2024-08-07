@@ -1,4 +1,5 @@
 import { RouteObject, Navigate } from 'react-router-dom';
+import { BaseLayout } from '~/components/layouts/base';
 
 import { EmployeesPage } from '~/pages/employees';
 
@@ -8,7 +9,12 @@ export const routes: RouteObject[] = [
     element: <Navigate to='/employees' replace />
   },
   {
-    path: '/employees',
-    element: <EmployeesPage />
+    element: <BaseLayout />,
+    children: [
+      {
+        path: '/employees',
+        element: <EmployeesPage />
+      }
+    ]
   }
 ];
