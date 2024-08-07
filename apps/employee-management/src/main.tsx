@@ -2,12 +2,15 @@ import './globals.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { routes } from '~/lib/routes';
+
+const router = createBrowserRouter(routes);
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className='min-h-screen bg-background font-sans antialiased'>
-      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-    </div>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
