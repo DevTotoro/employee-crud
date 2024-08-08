@@ -96,14 +96,18 @@ export const EmployeesPage = () => {
   return (
     <>
       <div className='flex flex-col w-full gap-8'>
-        <Button
-          className='w-fit'
-          onClick={() => {
-            setCreateEmployeeDialog(true);
-          }}
-        >
-          Create employee
-        </Button>
+        <div className='flex justify-between items-center'>
+          <h1 className='text-3xl font-bold'>Employees</h1>
+
+          <Button
+            className='w-fit'
+            onClick={() => {
+              setCreateEmployeeDialog(true);
+            }}
+          >
+            Create employee
+          </Button>
+        </div>
 
         <EmployeeTable
           employees={employees}
