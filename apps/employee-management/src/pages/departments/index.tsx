@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
-import { createDepartmentSchema, type CreateDepartmentSchema } from '~/lib/schemas/create-department.schema';
+import { createDepartmentSchema, type CreateDepartmentSchema } from '~/lib/schemas/departments.schema';
 import { DepartmentTable } from '~/components/department-table';
 import { apiFetch } from '~/lib/api';
 import { useForm } from 'react-hook-form';

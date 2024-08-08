@@ -6,8 +6,11 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
-import type { EditEmployeeSchema } from '~/lib/schemas/edit-employee.schema';
-import { createEmployeeSchema, type CreateEmployeeSchema } from '~/lib/schemas/create-employee.schema';
+import {
+  createEmployeeSchema,
+  type CreateEmployeeSchema,
+  type EditEmployeeSchema
+} from '~/lib/schemas/employees.schema';
 import { EmployeeTable } from '~/components/employee-table';
 import { apiFetch } from '~/lib/api';
 import { useForm } from 'react-hook-form';
