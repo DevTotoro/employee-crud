@@ -19,6 +19,16 @@ export class DepartmentsService {
     }
   }
 
+  public async getById(id: string) {
+    try {
+      return await this.db.department.findUnique({ where: { id } });
+    } catch (error) {
+      console.error(error);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
   public async createDepartment(data: CreateDepartmentDto) {
     try {
       return await this.db.department.create({ data });
