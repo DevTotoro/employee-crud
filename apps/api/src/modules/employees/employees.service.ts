@@ -27,11 +27,11 @@ export class EmployeesService {
         if (error.code === 'P2002') {
           throw new ConflictException('Employee with this email already exists');
         }
-
-        console.error(error);
-
-        throw new InternalServerErrorException();
       }
+
+      console.error(error);
+
+      throw new InternalServerErrorException();
     }
   }
 

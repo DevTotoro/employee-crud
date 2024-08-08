@@ -15,8 +15,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 export const EmployeesPage = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const [creatingEmployee, setCreatingEmployee] = useState(false);
   const [createEmployeeDialog, setCreateEmployeeDialog] = useState(false);
+  const [creatingEmployee, setCreatingEmployee] = useState(false);
   const [updatingEmployee, setUpdatingEmployee] = useState(false);
   const [deletingEmployee, setDeletingEmployee] = useState(false);
 
