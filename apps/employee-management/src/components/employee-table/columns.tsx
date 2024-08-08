@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger
 } from '~/components/ui/dropdown-menu';
 import { Button } from '~/components/ui/button';
+import { useDepartmentName } from '~/lib/hooks/use-department-name';
 
 interface TableEmployee extends Employee {
   onEdit: () => void;
@@ -43,6 +44,21 @@ export const columns: ColumnDef<TableEmployee>[] = [
   {
     accessorKey: 'email',
     header: 'Email'
+  },
+  {
+    accessorKey: 'departmentId',
+    header: ({ column }) => (
+      <Button
+        variant='ghost'
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === 'asc');
+        }}
+      >
+        Department
+        <ArrowUpDown className='ml-2 h-4 w-4' />
+      </Button>
+    ),
+    cell: ({ row }) => useDepartmentName(row.original.departmentId ?? undefined)
   },
   {
     accessorKey: 'createdAt',
