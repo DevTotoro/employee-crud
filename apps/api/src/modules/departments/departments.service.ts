@@ -3,6 +3,7 @@ import { ConflictException, Injectable, InternalServerErrorException } from '@ne
 import { Prisma } from '@repo/database';
 import { DatabaseService } from '~/core/database.service';
 import { CreateDepartmentDto } from './dto/create-department.dto';
+import { UpdateDepartmentDto } from './dto/update-department.dto';
 
 @Injectable()
 export class DepartmentsService {
@@ -28,6 +29,26 @@ export class DepartmentsService {
         }
       }
 
+      console.error(error);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  public async updateDepartment(id: string, data: UpdateDepartmentDto) {
+    try {
+      return await this.db.department.update({ where: { id }, data });
+    } catch (error) {
+      console.error(error);
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  public async deleteDepartment(id: string) {
+    try {
+      return await this.db.department.delete({ where: { id } });
+    } catch (error) {
       console.error(error);
 
       throw new InternalServerErrorException();
