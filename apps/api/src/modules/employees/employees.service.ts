@@ -33,4 +33,14 @@ export class EmployeesService {
       }
     }
   }
+
+  public async deleteEmployee(id: string) {
+    try {
+      return await this.db.employee.delete({ where: { id } });
+    } catch (error) {
+      console.error(error);
+
+      throw new InternalServerErrorException();
+    }
+  }
 }
