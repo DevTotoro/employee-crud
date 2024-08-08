@@ -1,4 +1,4 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
 import type { Prisma } from '@repo/database';
 
@@ -14,4 +14,9 @@ export class CreateEmployeeDto implements Prisma.EmployeeCreateInput {
   @IsString()
   @Transform(({ value }: { value: string }) => value.trim())
   lastName!: string;
+
+  @IsString()
+  @IsOptional()
+  @Transform(({ value }: { value: string }) => value.trim())
+  departmentId?: string;
 }

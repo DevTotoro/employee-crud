@@ -17,4 +17,9 @@ export class UpdateEmployeeDto implements Prisma.EmployeeUpdateInput {
   @IsOptional()
   @Transform(({ value }: { value: string }) => value.trim())
   lastName?: string;
+
+  @IsString()
+  @IsOptional()
+  @Transform(({ value }: { value: string }) => value.toLowerCase().trim())
+  departmentId?: string;
 }
