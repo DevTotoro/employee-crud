@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
+import { createEmployeeSchema } from './create-employee.schema';
+
 export type EditEmployeeSchema = z.infer<typeof editEmployeeSchema>;
 export const editEmployeeSchema = z.object({
-  firstName: z.string().min(2).max(50),
-  lastName: z.string().min(2).max(50)
+  firstName: createEmployeeSchema.shape.firstName,
+  lastName: createEmployeeSchema.shape.lastName
 });
