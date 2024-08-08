@@ -6,7 +6,11 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
-import { createDepartmentSchema, type CreateDepartmentSchema } from '~/lib/schemas/departments.schema';
+import {
+  createDepartmentSchema,
+  type EditDepartmentSchema,
+  type CreateDepartmentSchema
+} from '~/lib/schemas/departments.schema';
 import { DepartmentTable } from '~/components/department-table';
 import { apiFetch } from '~/lib/api';
 import { useForm } from 'react-hook-form';
@@ -16,6 +20,8 @@ export const DepartmentsPage = () => {
   const [departments, setDepartments] = useState<Department[]>([]);
   const [createDepartmentDialog, setCreateDepartmentDialog] = useState(false);
   const [creatingDepartment, setCreatingDepartment] = useState(false);
+  const [updatingDepartment, setUpdatingDepartment] = useState(false);
+  const [deletingDepartment, setDeletingDepartment] = useState(false);
 
   const reactHookForm = useForm<CreateDepartmentSchema>({
     resolver: zodResolver(createDepartmentSchema),
@@ -56,6 +62,38 @@ export const DepartmentsPage = () => {
     }
   };
 
+  const updateDepartment = async (departmentId: string, values: EditDepartmentSchema) => {
+    setUpdatingDepartment(true);
+
+    const res = await apiFetch<never>(`/departments/${departmentId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values)
+    });
+
+    setUpdatingDepartment(false);
+
+    if (!res.success) {
+      toast.error('An error occured while updating the department');
+    } else {
+      await getDepartments();
+    }
+  };
+
+  const deleteDepartment = async (departmentId: string) => {
+    setDeletingDepartment(true);
+
+    const res = await apiFetch<never>(`/departments/${departmentId}`, { method: 'DELETE' });
+
+    setDeletingDepartment(false);
+
+    if (!res.success) {
+      toast.error('An error occured while deleting the department');
+    } else {
+      await getDepartments();
+    }
+  };
+
   return (
     <>
       <div className='flex flex-col w-full gap-8'>
@@ -72,7 +110,13 @@ export const DepartmentsPage = () => {
           </Button>
         </div>
 
-        <DepartmentTable departments={departments} />
+        <DepartmentTable
+          departments={departments}
+          isUpdating={updatingDepartment}
+          isDeleting={deletingDepartment}
+          onUpdate={updateDepartment}
+          onDelete={deleteDepartment}
+        />
       </div>
 
       <Dialog
