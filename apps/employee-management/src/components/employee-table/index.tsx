@@ -18,7 +18,7 @@ import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { DataTable } from '~/components/ui/data-table';
 import { columns } from './columns';
-import { editEmployeeSchema, type EditEmployeeSchema } from '~/lib/schemas/edit-employee.schema';
+import { editEmployeeSchema, type EditEmployeeSchema } from '~/lib/schemas/employees.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
