@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import type { Employee } from '@repo/database';
+import type { Department, Employee } from '@repo/database';
 
 import {
   AlertDialog,
@@ -14,6 +14,7 @@ import {
 } from '~/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { DataTable } from '~/components/ui/data-table';
@@ -22,7 +23,8 @@ import { editEmployeeSchema, type EditEmployeeSchema } from '~/lib/schemas/emplo
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
-  employees?: Employee[];
+  employees: Employee[];
+  departments: Department[];
 
   isUpdating: boolean;
   isDeleting: boolean;
@@ -31,7 +33,7 @@ interface Props {
   onDelete: (employeeId: string) => Promise<void>;
 }
 
-export const EmployeeTable = ({ employees, isUpdating, isDeleting, onUpdate, onDelete }: Props) => {
+export const EmployeeTable = ({ employees, departments, isUpdating, isDeleting, onUpdate, onDelete }: Props) => {
   const [employeeToEdit, setEmployeeToEdit] = useState<Employee | undefined>(undefined);
   const [employeeToDelete, setEmployeeToDelete] = useState<Employee | undefined>(undefined);
 
@@ -39,13 +41,10 @@ export const EmployeeTable = ({ employees, isUpdating, isDeleting, onUpdate, onD
     resolver: zodResolver(editEmployeeSchema),
     values: {
       firstName: employeeToEdit?.firstName ?? '',
-      lastName: employeeToEdit?.lastName ?? ''
+      lastName: employeeToEdit?.lastName ?? '',
+      departmentId: employeeToEdit?.departmentId ?? undefined
     }
   });
-
-  if (!employees) {
-    return <></>;
-  }
 
   return (
     <>
@@ -113,6 +112,31 @@ export const EmployeeTable = ({ employees, isUpdating, isDeleting, onUpdate, onD
                     <FormControl>
                       <Input disabled={isUpdating} placeholder='e.g. Doe' {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={reactHookForm.control}
+                name='departmentId'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Department</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder='Select department' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {departments.map((department) => (
+                          <SelectItem key={department.id} value={department.id}>
+                            {department.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}

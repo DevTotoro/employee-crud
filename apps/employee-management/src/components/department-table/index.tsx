@@ -22,7 +22,7 @@ import { editDepartmentSchema, type EditDepartmentSchema } from '~/lib/schemas/d
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
-  departments?: Department[];
+  departments: Department[];
 
   isUpdating: boolean;
   isDeleting: boolean;
@@ -41,10 +41,6 @@ export const DepartmentTable = ({ departments, isUpdating, isDeleting, onUpdate,
       name: departmentToEdit?.name ?? ''
     }
   });
-
-  if (!departments) {
-    return <></>;
-  }
 
   return (
     <>

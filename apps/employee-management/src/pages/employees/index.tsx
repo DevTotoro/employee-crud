@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import type { Employee } from '@repo/database';
+import type { Department, Employee } from '@repo/database';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '~/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import {
@@ -18,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 export const EmployeesPage = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
   const [createEmployeeDialog, setCreateEmployeeDialog] = useState(false);
   const [creatingEmployee, setCreatingEmployee] = useState(false);
   const [updatingEmployee, setUpdatingEmployee] = useState(false);
@@ -28,11 +30,13 @@ export const EmployeesPage = () => {
     defaultValues: {
       email: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      departmentId: undefined
     }
   });
 
   useEffect(() => {
+    void getDepartments();
     void getEmployees();
   }, []);
 
@@ -43,6 +47,16 @@ export const EmployeesPage = () => {
       toast.error('An error occured while fetching employees');
     } else {
       setEmployees(res.data);
+    }
+  };
+
+  const getDepartments = async () => {
+    const res = await apiFetch<Department[]>('/departments');
+
+    if (!res.success) {
+      toast.error('An error occured while fetching departments');
+    } else {
+      setDepartments(res.data);
     }
   };
 
@@ -114,6 +128,7 @@ export const EmployeesPage = () => {
 
         <EmployeeTable
           employees={employees}
+          departments={departments}
           isUpdating={updatingEmployee}
           isDeleting={deletingEmployee}
           onUpdate={updateEmployee}
@@ -182,6 +197,31 @@ export const EmployeesPage = () => {
                     <FormControl>
                       <Input disabled={creatingEmployee} placeholder='e.g. Doe' {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={reactHookForm.control}
+                name='departmentId'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Department</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder='Select department' />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {departments.map((department) => (
+                          <SelectItem key={department.id} value={department.id}>
+                            {department.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
