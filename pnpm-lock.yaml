@@ -67,7 +67,7 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
-  apps/employee-management:
+  apps/workforce-management:
     dependencies:
       '@hookform/resolvers':
         specifier: ^3.9.0
