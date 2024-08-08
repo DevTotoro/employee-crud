@@ -10,7 +10,7 @@ export const Header = () => {
         <Link to='/employees' className='flex items-center gap-2'>
           <BriefcaseBusiness className='size-6' aria-hidden='true' />
 
-          <span className='hidden font-bold sm:inline-block'>Employee management</span>
+          <span className='hidden font-bold sm:inline-block'>Workforce management</span>
 
           <span className='sr-only'>Home</span>
         </Link>
