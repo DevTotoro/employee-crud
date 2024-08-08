@@ -3,7 +3,7 @@ import { ConflictException, Injectable, InternalServerErrorException } from '@ne
 import { Prisma } from '@repo/database';
 import { DatabaseService } from '~/core/database.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
-import { UpdatemployeeDto } from './dto/update-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
 @Injectable()
 export class EmployeesService {
@@ -35,7 +35,7 @@ export class EmployeesService {
     }
   }
 
-  public async updateEmployee(id: string, data: UpdatemployeeDto) {
+  public async updateEmployee(id: string, data: UpdateEmployeeDto) {
     try {
       return await this.db.employee.update({ where: { id }, data });
     } catch (error) {
