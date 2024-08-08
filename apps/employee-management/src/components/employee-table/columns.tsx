@@ -12,7 +12,12 @@ import {
 } from '~/components/ui/dropdown-menu';
 import { Button } from '~/components/ui/button';
 
-export const columns: ColumnDef<Employee>[] = [
+interface TableEmployee extends Employee {
+  onEdit: () => void;
+  onDelete: () => void;
+}
+
+export const columns: ColumnDef<TableEmployee>[] = [
   {
     accessorKey: 'id',
     header: 'ID'
@@ -69,8 +74,21 @@ export const columns: ColumnDef<Employee>[] = [
               Copy employee ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit employee</DropdownMenuItem>
-            <DropdownMenuItem>Delete employee</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                employee.onEdit();
+              }}
+            >
+              Edit employee
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className='text-red-500 focus:text-red-500'
+              onClick={() => {
+                employee.onDelete();
+              }}
+            >
+              Delete employee
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
