@@ -7,7 +7,7 @@ export class UpdateEmployeeParamsDto {
   id!: string;
 }
 
-export class UpdatemployeeDto implements Prisma.EmployeeUpdateInput {
+export class UpdateEmployeeDto implements Prisma.EmployeeUpdateInput {
   @IsString()
   @IsOptional()
   @Transform(({ value }: { value: string }) => value.trim())

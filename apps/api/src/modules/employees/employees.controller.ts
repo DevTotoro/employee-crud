@@ -3,7 +3,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { DeleteEmployeeDto } from './dto/delete-employee.dto';
-import { UpdateEmployeeParamsDto, UpdatemployeeDto } from './dto/update-employee.dto';
+import { UpdateEmployeeParamsDto, UpdateEmployeeDto } from './dto/update-employee.dto';
 
 @Controller('/employees')
 export class EmployeesController {
@@ -20,7 +20,7 @@ export class EmployeesController {
   }
 
   @Put('/:id')
-  public async updateEmployee(@Param() { id }: UpdateEmployeeParamsDto, @Body() body: UpdatemployeeDto) {
+  public async updateEmployee(@Param() { id }: UpdateEmployeeParamsDto, @Body() body: UpdateEmployeeDto) {
     return await this.employeesService.updateEmployee(id, body);
   }
 
